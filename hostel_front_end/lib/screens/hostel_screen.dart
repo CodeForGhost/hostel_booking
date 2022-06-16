@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 
 class HostelScreen extends StatelessWidget {
-  const HostelScreen({Key? key}) : super(key: key);
+  final String imageUrl;
+  final String name;
+  final String price;
+  final String desc;
+  const HostelScreen(
+      {Key? key,
+      required this.imageUrl,
+      required this.name,
+      required this.price,
+      required this.desc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,10 +19,12 @@ class HostelScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         centerTitle: true,
-        title: Text("Hostel Name"),
+        title: Text(name),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -22,15 +34,15 @@ class HostelScreen extends StatelessWidget {
               width: double.infinity,
               height: 300,
               color: Colors.amber,
-              child: Center(child: Text('Image Url')),
+              child: Center(child: Text(imageUrl)),
             ),
             Container(
                 width: double.infinity,
                 height: 100,
                 child: ListTile(
-                  title: Text("Hostel Name"),
+                  title: Text(name),
                   subtitle: Text("2 Guests 1 Bedroom 1 Bath"),
-                  trailing: Text("1000 Rs"),
+                  trailing: Text(price),
                   tileColor: Colors.blue,
                 )),
             Container(
@@ -38,7 +50,7 @@ class HostelScreen extends StatelessWidget {
               height: 400,
               child: Column(
                 children: [
-                  Text("Description"),
+                  Text(desc),
                   Text("andslknblsbjkloasd"),
                 ],
               ),
@@ -47,7 +59,15 @@ class HostelScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            enableDrag: true,
+            builder: (BuildContext context) {
+              return Center(child: Text("kjasjkd"));
+            },
+          );
+        },
         child: Text('Book'),
       ),
     );

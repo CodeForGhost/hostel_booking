@@ -34,8 +34,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return HostelScreen();
+    return MainScreen();
   }
 }
-// HostelScreen()
-// MainScreen()
+
+
+// HostelScreen(
+//       // key: 1,
+//       imageUrl: "ImageUrl",
+//       desc: "jksabdkjbadj",
+//       name: "Name",
+//       price: "1000Rs",
+//     );
