@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_front_end/widgets/date_field_custom_widget.dart';
 
-class HostelScreen extends StatelessWidget {
+class HostelScreen extends StatefulWidget {
   final String imageUrl;
   final String name;
   final String price;
@@ -14,6 +15,13 @@ class HostelScreen extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<HostelScreen> createState() => _HostelScreenState();
+}
+
+class _HostelScreenState extends State<HostelScreen> {
+  TextEditingController dateinputTo = TextEditingController();
+  TextEditingController dateinputFrom = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +32,7 @@ class HostelScreen extends StatelessWidget {
           },
         ),
         centerTitle: true,
-        title: Text(name),
+        title: Text(widget.name),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -34,15 +42,15 @@ class HostelScreen extends StatelessWidget {
               width: double.infinity,
               height: 300,
               color: Colors.amber,
-              child: Center(child: Text(imageUrl)),
+              child: Center(child: Text(widget.imageUrl)),
             ),
             Container(
                 width: double.infinity,
                 height: 100,
                 child: ListTile(
-                  title: Text(name),
+                  title: Text(widget.name),
                   subtitle: Text("2 Guests 1 Bedroom 1 Bath"),
-                  trailing: Text(price),
+                  trailing: Text(widget.price),
                   tileColor: Colors.blue,
                 )),
             Container(
@@ -50,7 +58,7 @@ class HostelScreen extends StatelessWidget {
               height: 400,
               child: Column(
                 children: [
-                  Text(desc),
+                  Text(widget.desc),
                   Text("andslknblsbjkloasd"),
                 ],
               ),
@@ -62,9 +70,39 @@ class HostelScreen extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            enableDrag: true,
+            // enableDrag: true,
             builder: (BuildContext context) {
-              return Center(child: Text("kjasjkd"));
+              return SizedBox(
+                height: 250,
+                child: Card(
+                  elevation: 5,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      DateFieldCustom(
+                        dateinput: dateinputTo,
+                        text: "To",
+                      ),
+                      DateFieldCustom(
+                        dateinput: dateinputFrom,
+                        text: "From",
+                      ),
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // print(widget.name);
+                            // print(dateinputTo.text);
+                            // print(dateinputFrom.text);
+                          },
+                          child: Text('Book'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
             },
           );
         },
