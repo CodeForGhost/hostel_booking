@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_front_end/models/hostel_model.dart';
 import 'package:hostel_front_end/screens/hostel_screen.dart';
+import 'package:hostel_front_end/services/hostel_service.dart';
 
 import '../widgets/hostel_card_widget.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  late Future<Hostel> futureHostel;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    futureHostel = HostelService().fetchAlbum();
+  }
 
   @override
   Widget build(BuildContext context) {
