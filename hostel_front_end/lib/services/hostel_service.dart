@@ -5,21 +5,29 @@ import 'package:http/http.dart' as http;
 import '../models/hostel_model.dart';
 
 class HostelService {
-  Future<Hostel> fetchAlbum() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:8000/api/hostels'));
+  final List<dynamic> _hostels = [];
 
-    print(response.body);
+  List<Hostel> get hostels {
+    return [..._hostels];
+  }
+
+  Future<List<dynamic>> getAllHostels() async {
+    final response = await http.get(Uri.parse(
+        'http://192.168.8.146/hostel_booking/hostel_back_end_api/public/api/hostels'));
 
     if (response.statusCode == 200) {
-      print("hello");
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return Hostel.fromJson(jsonDecode(response.body));
+      var _products = jsonDecode(response.body)['data'];
+
+      // print(_products);
+      var _temp = [];
+      for (var i = 0; i < _products.length; i++) {
+        // print(_products[i]);
+        _temp.add(_products[i]);
+      }
+      // print(_temp);
+      return _temp;
     } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load album');
+      throw Exception('Failed to load Products');
     }
   }
 }

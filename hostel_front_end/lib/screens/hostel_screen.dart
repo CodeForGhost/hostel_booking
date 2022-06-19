@@ -4,13 +4,13 @@ import 'package:hostel_front_end/widgets/date_field_custom_widget.dart';
 class HostelScreen extends StatefulWidget {
   final String imageUrl;
   final String name;
-  final String price;
+  // final String price;
   final String desc;
   const HostelScreen(
       {Key? key,
       required this.imageUrl,
       required this.name,
-      required this.price,
+      // required this.price,
       required this.desc})
       : super(key: key);
 
@@ -42,7 +42,10 @@ class _HostelScreenState extends State<HostelScreen> {
               width: double.infinity,
               height: 300,
               color: Colors.amber,
-              child: Center(child: Text(widget.imageUrl)),
+              child: SizedBox(
+                width: 50,
+                child: Image.network(widget.imageUrl),
+              ),
             ),
             Container(
                 width: double.infinity,
@@ -50,7 +53,7 @@ class _HostelScreenState extends State<HostelScreen> {
                 child: ListTile(
                   title: Text(widget.name),
                   subtitle: Text("2 Guests 1 Bedroom 1 Bath"),
-                  trailing: Text(widget.price),
+                  // trailing: Text(widget.price),
                   tileColor: Colors.blue,
                 )),
             Container(
