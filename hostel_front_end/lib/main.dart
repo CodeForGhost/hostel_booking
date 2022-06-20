@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_front_end/screens/forgot_password_screen.dart';
 import 'package:hostel_front_end/screens/hostel_screen.dart';
+import 'package:hostel_front_end/screens/login_screen.dart';
+import 'package:hostel_front_end/screens/profile_screen.dart';
+import 'package:hostel_front_end/screens/signup_screen.dart';
+import 'package:hostel_front_end/screens/welcome_screen.dart';
 
 import 'screens/main_screen.dart';
 
